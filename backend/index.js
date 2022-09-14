@@ -9,5 +9,5 @@ app.use(cors());
 app.use(bodyparser.json());
 
 app.listen(3000, ()=> {
-    console.log('server running');
+    console.log('server running..');
 })
