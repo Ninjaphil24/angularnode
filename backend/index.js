@@ -69,6 +69,25 @@ app.get('/user/:id',(req,res)=>{
     });
 });
 
+app.post('/user',(req,res)=>{
+    console.log(req.body, 'createdata');
+
+    let fullName = req.body.fullname;
+    let eMail = req.body.email;
+    let mb = req.body.mobile;
+
+    let qr = `insert into user(fullname,email,mobile) values('${fullName}','${eMail}','${mb}')`;
+
+    db.query(qr,(err,result)=>{
+        if(err){console.log(err);}
+        console.log(result,'result')
+        res.send({
+            message: 'data inserted'
+        });
+       
+    });
+});
+
 app.listen(3000, ()=> {
     console.log('server running..');
 });
