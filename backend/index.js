@@ -88,6 +88,27 @@ app.post('/user',(req,res)=>{
     });
 });
 
+// update single data
+app.put('/user/:id',(req,res)=>{
+    console.log(req.body, 'updatedata');
+
+    let gID = req.params.id;
+    let fullName = req.body.fullname;
+    let eMail = req.body.email;
+    let mb = req.body.mobile;
+    
+    let qr = `update user set fullname = '${fullName}', email = '${eMail}', mobile = '${mb}' where id = '${gID}'`;
+
+    db.query(qr,(err,result)=>{
+        if(err){console.log(err);}
+
+        res.send({
+            message:'data updated'
+        });
+    });
+    
+});
+
 app.listen(3000, ()=> {
     console.log('server running..');
 });
