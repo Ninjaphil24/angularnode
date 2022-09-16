@@ -109,6 +109,21 @@ app.put('/user/:id',(req,res)=>{
     
 });
 
+// delete single data
+
+app.delete('/user/:id',(req,res)=>{
+    let qID = req.params.id;
+    let qr = `delete from user where id = '${qID}'`;
+    db.query(qr,(err,result)=>{
+        if(err){console.log(err);}
+        res.send(
+            {
+                message: 'data deleted'
+            }
+        )
+    });
+});
+
 app.listen(3000, ()=> {
     console.log('server running..');
 });
