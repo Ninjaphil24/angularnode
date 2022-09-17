@@ -1,1 +1,19 @@
-<p>create works!</p>
+<div class="container mt-5">
+
+    <form [formGroup]="userForm" (ngSubmit)="userSubmit()">
+        <div class="col-lg-4 mt-2">
+            <input type="text" class="form-control" formControlName="fullname" placeholder="Enter Full Name">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <input type="text" class="form-control" formControlName="email" placeholder="Enter Email">
+        </div>
+        <div class="col-lg-4 mt-2">
+            <input type="text" class="form-control" formControlName="mobile" placeholder="Enter Mobile">
+        </div>
+
+        <div class="col-lg-4 mt-2">
+            <button class="btn btn-primary btn-sm">Create</button>
+        </div>
+    </form>
+
+</div>
