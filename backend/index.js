@@ -82,7 +82,7 @@ app.post('/user',(req,res)=>{
         if(err){console.log(err);}
         console.log(result,'result')
         res.send({
-            message: 'data inserted'
+            message: 'Data inserted'
         });
        
     });
