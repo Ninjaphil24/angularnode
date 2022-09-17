@@ -9,7 +9,7 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service:ApiserviceService) { }
 
   errormsg:any;
 
@@ -27,6 +27,9 @@ export class CreateComponent implements OnInit {
     if(this.userForm.valid)
     {
       console.log(this.userForm.value)
+      this.service.createData(this.userForm.value).subscribe((res)=>{
+        console.log(res,'res==>');
+      })
     }
     else{
       this.errormsg = 'All fields are required!';
