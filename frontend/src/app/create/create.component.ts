@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms'
+import { ApiserviceService } from '../apiservice.service';
 
 @Component({
   selector: 'app-create',
@@ -9,6 +10,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms'
 export class CreateComponent implements OnInit {
 
   constructor() { }
+
+  errormsg:any;
 
   ngOnInit(): void {
   }
@@ -21,6 +24,12 @@ export class CreateComponent implements OnInit {
 
   userSubmit()
   {
-    console.log(this.userForm.value);
+    if(this.userForm.valid)
+    {
+      console.log(this.userForm.value)
+    }
+    else{
+      this.errormsg = 'All fields are required!';
+    }
   }
 }
