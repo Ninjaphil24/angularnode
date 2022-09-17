@@ -118,7 +118,7 @@ app.delete('/user/:id',(req,res)=>{
         if(err){console.log(err);}
         res.send(
             {
-                message: 'data deleted'
+                message: 'Data deleted'
             }
         )
     });
