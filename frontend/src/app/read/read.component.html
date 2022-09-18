@@ -23,7 +23,11 @@
             <td>{{ us.fullname }}</td>
             <td>{{ us.email }}</td>
             <td>{{ us.mobile }}</td>
-            <td><button class="btn btn-sm btn-danger" (click)="deleteID(us.id)">Delete</button></td>
+            <td>
+              <button class="btn btn-sm btn-danger" (click)="deleteID(us.id)">Delete</button>
+              &nbsp;
+              <a [routerLink]="['/create',us.id]"  class="btn btn-sm btn-success">Update</a>
+            </td>
           </tr>
          </tbody>
       </table>

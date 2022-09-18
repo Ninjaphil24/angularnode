@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import { ApiserviceService } from '../apiservice.service';
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
@@ -9,12 +9,22 @@ import { ApiserviceService } from '../apiservice.service';
 })
 export class CreateComponent implements OnInit {
 
-  constructor(private service:ApiserviceService) { }
+  constructor(private service:ApiserviceService,private router:ActivatedRoute) { }
 
   errormsg:any;
   successmsg:any;
+  getparamid:any;
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.getparamid = this.router.snapshot.paramMap.get('id');
+    this.service.getSingleData(this.getparamid).subscribe((res=>{
+      console.log(res,'res==>');
+      this.userForm.patchValue({
+        fullname:res.data[0].fullname,
+        email:res.data[0].email,
+        mobile:res.data[0].mobile
+      });
+    }))
   }
 
   userForm = new FormGroup({
@@ -22,7 +32,7 @@ export class CreateComponent implements OnInit {
     'email':new FormControl('',Validators.required),
     'mobile':new FormControl('',Validators.required),
   });
-
+// create new user
   userSubmit()
   {
     if(this.userForm.valid)
@@ -36,6 +46,22 @@ export class CreateComponent implements OnInit {
     }
     else{
       this.errormsg = 'All fields are required!';
+    }
+  }
+
+  // update data
+  userUpdate()
+  {
+    console.log(this.userForm.value, 'updatedform');
+    if(this.userForm.valid)
+    {
+      this.service.updateData(this.userForm.value,this.getparamid).subscribe((res)=>
+      {
+        console.log(res,'resupdated')
+      })
+    }else
+    {
+
     }
   }
 }
