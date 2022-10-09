@@ -10,7 +10,7 @@ export class ApiserviceService {
   constructor(private _http:HttpClient) { }
 
     // connect frontend to backend
-    apiUrl = 'http://localhost:3000/user/'
+    apiUrl = 'https://angularnodepdm.herokuapp.com/user/'
 
     // get all data
     getAllData():Observable<any>

@@ -11,11 +11,16 @@ app.use(bodyparser.json());
 // database connection
 
 const db =mysql.createConnection({
-    host:'localhost',
-    user: 'root',
-    password:'',
-    database:'simpledb',
+    host:'eu-cdbr-west-03.cleardb.net',
+    user: 'baaaf2adc6f7c6',
+    password:'15b21c52',
+    database:'heroku_230984791d3e78e',
     port: 3306
+    // host:'localhost',
+    // user: 'root',
+    // password:'',
+    // database:'simpledb',
+    // port: 3306
 });
 
 // check database Connection
@@ -124,6 +129,13 @@ app.delete('/user/:id',(req,res)=>{
     });
 });
 
-app.listen(3000, ()=> {
-    console.log('server running..');
+app.listen(process.env.PORT || 3000, ()=> {
+    console.log(`Server is running ${process.env.PORT || 3000}`);
 });
+
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static("build"));
+//     app.get("*", (req, res) => {
+//       res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+//     });
+//   }
